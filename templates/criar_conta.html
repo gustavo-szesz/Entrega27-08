@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block titulo %}
+    Cadastrar no Site
+{% endblock %}
+
+{% block body %}
+
+    {% include 'navbar.html' %}
+
+    <form method="POST" action="url_for('criarConta')">
+        {{ form.csrf_token }}
+
+        {{ form.nome.label }}
+        {{ form.nome }}
+        
+        {{ form.email.label }}
+        {{ form.email }}
+
+        {{ form.senha.label }}
+        {{ form.senha }}
+        <input type="submit" value="Cadastrar">
+    </form>
+
+{% endblock %}

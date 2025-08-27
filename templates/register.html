@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Registrar{% endblock %}
+
+{% block body %}
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="card p-4" style="width: 100%; max-width: 400px;">
+            <h2 class="text-center mb-4">Registrar</h2>
+            <form method="POST" action="{{ url_for('register') }}">
+
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    {{ form.nome.label(class="form-label") }}
+                    {{ form.nome(class="form-control", placeholder="Digite seu nome") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control", placeholder="Digite seu email") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.senha.label(class="form-label") }}
+                    {{ form.senha(class="form-control", placeholder="Digite sua senha") }}
+                </div>
+                <div class="d-grid">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+            <a href="{{ url_for('login') }}">Já tem uma conta? Faça login</a>
+        </div>
+    </div>
+{% endblock %}
