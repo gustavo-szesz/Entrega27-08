@@ -87,9 +87,17 @@ def logout():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    # Obter eventos do usuário atual
-    eventos = Evento.query.filter_by(id_usuario=current_user.id).all()
-    return render_template('dashboard.html', eventos=eventos)
+    # Buscar todos os eventos
+    todos_eventos = Evento.query.all()
+
+    # Buscar apenas os eventos do usuário atual
+    meus_eventos = Evento.query.filter_by(id_usuario=current_user.id).all()
+
+    return render_template(
+        'dashboard.html',
+        todos_eventos=todos_eventos,
+        meus_eventos=meus_eventos
+    )
 
 
 @app.route('/create_event', methods=['GET', 'POST'])

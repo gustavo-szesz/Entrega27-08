@@ -1,30 +1,31 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Dashboard
+Dashboard
 {% endblock %}
 
- {% block body %}
-   <div class="container vh-100 d-flex justify-content-center align-items-center">
+{% block body %}
+<div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="card p-4" style="width: 100%; max-width: 95%;">
 
         <h1>Dashboard</h1>
         <a href="{{ url_for('logout') }}"><button type="button" class="btn btn-outline-danger">Logout</button></a>
 
         <hr>
-        <h3>Todas os eventos</h3>
+        <h3>Todos os eventos</h3>
 
         <ul>
             {% for event in todos_eventos %}
-                <li>{{ event.event_name }} - {{ event.event_date }} - {{ event.description }}</li>
+                <li>{{ event.nome }} - {{ event.dataEvento }} - {{ event.descricao }}</li>
             {% endfor %}
         </ul>
 
 
-        <a href="{{ url_for('create_event') }}"> <button type="button" class="btn btn-primary">Criar Nova Tarefa</button> </a>
+        <a href="{{ url_for('create_event') }}"> <button type="button" class="btn btn-primary">Criar Nova
+                Tarefa</button> </a>
         <hr>
 
-        <h3>Suas eventos...</h3>
+        <h3>Seus eventos...</h3>
         <table>
             <tr>
                 <th>Nome</th>
@@ -33,21 +34,24 @@
                 <th>Ações</th>
             </tr>
             {% for event in meus_eventos %}
-                <tr>
-                    <td>{{ event.event_name }}</td>
-                    <td>{{ event.event_date }}</td>
-                    <td>{{ event.description }}</td>
-                    <td>
-                        <a href="{{ url_for('edit_event', event_id=event.id) }}"><button type="button" class="btn btn-outline-warning">Editar</button></a>
-                        <form action="{{ url_for('delete_event', event_id=event.id) }}" method="POST" style="display:inline;">
-                            <button type="submit" onclick="return confirm('Você tem certeza que deseja excluir?')" class="btn btn-outline-danger">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ event.nome }}</td>
+                <td>{{ event.dataEvento }}</td>
+                <td>{{ event.descricao }}</td>
+                <td>
+                    <a href="{{ url_for('edit_event', event_id=event.id) }}"><button type="button"
+                            class="btn btn-outline-warning">Editar</button></a>
+                    <form action="{{ url_for('delete_event', event_id=event.id) }}" method="POST"
+                        style="display:inline;">
+                        <button type="submit" onclick="return confirm('Você tem certeza que deseja excluir?')"
+                            class="btn btn-outline-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
             {% endfor %}
         </table>
 
     </div>
-   </div>
+</div>
 
 {% endblock %}

@@ -23,3 +23,5 @@ class FormularioEvento(FlaskForm):
     descricao = TextAreaField("Descricao:")
     submit = SubmitField("Criar Evento")
 
+
+
